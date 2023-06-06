@@ -1,10 +1,10 @@
 import { useState } from 'react';
+import { useNavigate, useLocation } from 'react-router-dom';
 import styles from '../styles/Login.module.css';
 import { useAuthContext } from '../context/AuthContext';
-import { useNavigate, useLocation } from 'react-router-dom';
 
 const Login = () => {
-  const [username, setUsername] = useState(''); 
+  const [username, setUsername] = useState('');
   const { login } = useAuthContext();
 
   const navigate = useNavigate();
