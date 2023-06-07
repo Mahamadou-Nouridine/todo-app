@@ -1,6 +1,6 @@
 /* eslint-disable react/prop-types */
-import { Navigate, useLocation } from "react-router-dom";
-import { useAuthContext } from "../context/AuthContext";
+import { Navigate, useLocation } from 'react-router-dom';
+import { useAuthContext } from '../context/AuthContext';
 
 const ProtectedRoute = ({ children }) => {
   const { user } = useAuthContext();

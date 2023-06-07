@@ -1,27 +1,30 @@
 /* eslint-disable react/prop-types */
-import { useState } from "react";
-import { FaTrash } from "react-icons/fa";
-import { AiFillEdit } from "react-icons/ai";
-import styles from "../styles/TodoItem.module.css";
-import { useAuthContext } from "../context/AuthContext";
-const TodoItem = ({ itemProp, handleChange, delTodo, setUpdate }) => {
-    const { user } = useAuthContext();
+import { useState } from 'react';
+import { FaTrash } from 'react-icons/fa';
+import { AiFillEdit } from 'react-icons/ai';
+import styles from '../styles/TodoItem.module.css';
+import { useAuthContext } from '../context/AuthContext';
+
+const TodoItem = ({
+  itemProp, handleChange, delTodo, setUpdate,
+}) => {
+  const { user } = useAuthContext();
   const [editing, setEditing] = useState(false);
 
   const handleEditing = () => {
     setEditing(true);
   };
 
-  let viewMode = {};
-  let editMode = {};
+  const viewMode = {};
+  const editMode = {};
   if (editing) {
-    viewMode.display = "none";
+    viewMode.display = 'none';
   } else {
-    editMode.display = "none";
+    editMode.display = 'none';
   }
 
   const handleUpdatedDone = (event) => {
-    if (event.key === "Enter") {
+    if (event.key === 'Enter') {
       setEditing(false);
     }
   };
@@ -33,7 +36,8 @@ const TodoItem = ({ itemProp, handleChange, delTodo, setUpdate }) => {
           type="checkbox"
           checked={itemProp.completed}
           onChange={() => handleChange(itemProp.id)}
-        />
+          />
+          {itemProp.title}
         {user && (
           <button onClick={handleEditing}>
             <AiFillEdit
@@ -42,10 +46,9 @@ const TodoItem = ({ itemProp, handleChange, delTodo, setUpdate }) => {
           </button>
         )}
         <button onClick={() => delTodo(itemProp.id)}>
-          <FaTrash style={{ color: "#5e5e5e", fontSize: "16px" }} />
+          <FaTrash style={{ color: '#5e5e5e', fontSize: '16px' }} />
         </button>
 
-        {itemProp.title}
       </div>
       <input
         type="text"
